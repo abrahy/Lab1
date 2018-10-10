@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<!--ABRAHY-->
+	<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js"></script>
+	<title> Football Rankings 2017-2018</title>
+	<style>
+	     #head{
+		   background-color: #333;
+		   color: white;
+		   width: 1000px;
+           text-decoration-color: white;
+		 
+		 }
+		 
+		 body{
+        background-color: gray;
+		 
+		 font-size: 16px;
+         
+
+        
+		 
+		 }
+		 th,td {
+			width: 430px;
+			height: 70px;
+			border: solid 2px #333;
+		 }
+		 th {
+			font-weight: 900;
+		 }
+	
+	</style>
+
+	
+	</head>
+	<body>
+	<header>
+		<h1>  This webpage show stats from the 2017-2018 season </h1>
+	
+	</header>
+
+		<div id="output"></div>
+
+	<footer>
+
+    </footer>
+    <script src="lab1.js"></script>
+	<script>
+		var output ="";
+var output = "<table>" + "<tr>" +"<th> Name </th>" + "<th> Record </th>" + "<th> Offense_Rank </th>" + "<th> Defense_Rank </th>" + "<th> Wins </th>" + "<th> Losses </th>" + "<th> Conference </th>" + "</tr>"; 
+for(var x = 0; x < data.length; x++){
+       var Name = data[x].Name;
+       var Record = data[x].Record;
+	   var Offense_Rank = data[x].Offense;
+	   var Defense_Rank = data[x].Defense;
+	   var Wins = data[x].Wins;
+	   var Losses = data[x].Losses;
+	   var Conference = data[x].Conference;
+output += '<tr>' + '<td>' + Name + '</td>' + '<td>' + Record + '</td>' + '<td>' +  Wins.toFixed(2) + '</td>' + '<td>' + Offense_Rank + '</td>' +'<td>' + Defense_Rank + '</td>' + '<td>' + Losses + '</td>'  + "<th>" + Conference + "</th>" +'</tr>';
+}
+output += "</table>";
+document.getElementById('output').innerHTML = output;
+</script>
+
+<canvas id="myChart" width="400" height="400"></canvas>
+		<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: (function(){
+               var arr = [];
+               for(var i=0; i<5; i++){
+                   arr.push(data[i].Wins);
+                       
+                   
+               }
+               return arr;
+           })("Name:")
+		
+		/**[data[0].institution_name, data[1].institution_name, data[2].institution_name, data[3].institution_name, data[4].institution_name, data[5].institution_name]**/,
+        datasets: [{
+            label: '2017-2018 Stats',
+            data: [data[0].Wins, data[1].Wins, data[2].Wins, data[3].Wins, data[4].Wins, data[5].Wins],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+	</body>
+</html>
